@@ -1,36 +1,47 @@
-    // src/App.js
-    import CourseListing from './components/courseListing';
-    import React, {Component} from 'react';
-   
-    class App extends Component {
+//import components
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-        
-        state = {
-          courses:[]
-        }
-    
+import Header from "./components/Header";
+import withContext from "./Context";
+import PrivateRoute from "./PrivateRoute";
+//import Courses from "./components/Courses";
+//import CourseDetail from "./components/CourseDetail";
+//import CreateCourse from "./components/CreateCourse";
+//import UpdateCourse from "./components/UpdateCourse";
+import UserSignUp from "./components/UserSignUp";
+import UserSignIn from "./components/UserSignIn";
+import UserSignOut from "./components/UserSignOut";
+//import DeleteCourse from "./components/DeleteCourse";
+import Authenticated from './components/Authenticated';
+import Public from './components/Public';
+//connects components with context and the changes that come along with context 
+const UserSignUpWithContext = withContext(UserSignUp); 
+const UserSignInWithContext = withContext(UserSignIn);
+const HeaderWithContext = withContext(Header);
+//const CreateCourseWithContext = withContext(CreateCourse);
+//const UpdateCourseWithContext = withContext(UpdateCourse);
+const UserSignOutWithContext = withContext(UserSignOut);
+//const CourseDetailWithContext = withContext(CourseDetail);
+//const DeleteCourseWithContext = withContext(DeleteCourse);
 
-      componentDidMount() {
+//routes to the components!
+const routes = () => (
+  <Router>
+    <div>
+    <HeaderWithContext />
+      <Switch>
+      <Route exact path="/" component={Public} />
+        <PrivateRoute path="/authenticated" component={Authenticated} />
+        <Route path="/signin" component={UserSignInWithContext} />
+        <Route path="/signup" component={UserSignUpWithContext} />
+        <Route path="/signout" component={UserSignOutWithContext} />
+      </Switch>
+    </div>
+  </Router>
+);
 
-        fetch('http://localhost:5000/api/courses', {method:'GET', 
-        headers: {'Authorization': 'Basic ' + btoa('joe@smith.com:joepassword')}})
-        .then(response => response.json())
-        .then((data) => {
-          this.setState({ courses: data })
-        })
-        .catch(console.log);
-        
-      }
-
-      render () {
-        return (
-          <CourseListing courses={this.state.courses}/>
-        );
-      }
-    }
-    
-    export default App;
-
+export default routes
 
 /*
 
