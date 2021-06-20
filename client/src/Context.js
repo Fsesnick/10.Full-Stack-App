@@ -21,13 +21,13 @@ export class Provider extends Component {
     super();
     this.data = new Data();
   }
-
+ 
   render() {
     const { authenticatedUser } = this.state;
     const value = {
       authenticatedUser,
       data: this.data,
-      actions: {
+      actions: {// Add the 'actions' property and object
         signIn: this.signIn,
         signOut: this.signOut
       },
@@ -58,7 +58,7 @@ export class Provider extends Component {
     }
     return user;
   }
-
+  //EXEMPLE OF THE RETURNED PROMISEVALUE {name: "Guil", username: "guil@guil.com"}
   signOut = () => {
     this.setState({ authenticatedUser: null });
     Cookies.remove('authenticatedUser');

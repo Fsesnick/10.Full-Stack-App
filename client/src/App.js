@@ -11,9 +11,9 @@ import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import CourseDetail from "./components/CourseDetail";
-//import DeleteCourse from "./components/DeleteCourse";
+import DeleteCourse from "./components/DeleteCourse";
 import CreateCourse from "./components/CreateCourse";
-//import UpdateCourse from "./components/UpdateCourse";
+import UpdateCourse from "./components/UpdateCourse";
 import './styles/global.css';
 
 //conecta componentes com contexto e as mudanças que vêm junto com o contexto 
@@ -22,22 +22,23 @@ const UserSignInWithContext = withContext(UserSignIn);
 const HeaderWithContext = withContext(Header);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CourseDetailWithContext = withContext(CourseDetail);
-//const DeleteCourseWithContext = withContext(DeleteCourse);
+const DeleteCourseWithContext = withContext(DeleteCourse);
 const CreateCourseWithContext = withContext(CreateCourse);
-//const UpdateCourseWithContext = withContext(UpdateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 
 const routes = () => (
   <Router>
     <div>
     <HeaderWithContext />
       <Switch>
-        <Route exact path="/" component={Courses} />
+      <Route exact path="/" component={Courses} />
         <PrivateRoute exact path="/courses/create"  component={CreateCourseWithContext} />
         <Route exact path="/courses/:id" component={CourseDetailWithContext} />
-        <Route path="/signin" component={UserSignInWithContext} />
+        <PrivateRoute exact path="/courses/:id/update" component={UpdateCourseWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
+        <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route exact path="/notfound" component={NotFound}/>
+        <PrivateRoute path="/courses/:id/delete" component={DeleteCourseWithContext} />
         <Route component={NotFound} />
       </Switch>
     </div>

@@ -11,19 +11,19 @@ const { authenticateUser } = require('../middleware/authUser');
 const router = express.Router();
 
 // Route that returns a list of users.
-router.get('/users',authenticateUser,asyncHandler(async (req, res) => {
+router.get('/', authenticateUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
-  // Retrieve authenticated user info
-  const authUser = await User.findByPk(user.id);
-  // If current user is an authenticated user, return info in JSON
-  if (authUser) {
-    res.json(authUser);
-  } else {
-    throw new Error();
-  }
 
-})
-);
+  res.json({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    emailAddress: user.emailAddress,
+    password: user.password,
+    userId: user.id
+  });
+  res.status(200);
+}));
+
 // Route that creates a new user.
 router.post('/users',   asyncHandler(async (req, res) => {
   try {

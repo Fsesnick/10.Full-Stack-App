@@ -1,32 +1,35 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Form from './Form';
 
-export default class CreateCourse extends Component {
-    state = {
-        title: '',
-        description: '',
-        estimatedTime: '',
-        materialsNeeded: '',
-        errors: [],
-        user: this.props.context.authenticatedUser || null,
-        userId: ""
-      };
+//Creates courses to be added to the index only if there is an authenticated user
+class CreateCourse extends Component {
+
+
+  state = {
+    title: '',
+    description: '',
+    estimatedTime: '',
+    materialsNeeded: '',
+    errors: [],
+    user: this.props.context.authenticatedUser || null,
+    userId: ""
+  };
 
   render() {
-    const { context } = this.props;
-    const authUser = context.authenticatedUser;
 
     const {
-        title,
-        description,
-        estimatedTime,
-        materialsNeeded,
-        errors,
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+      errors
     } = this.state;
 
-   return (
-<div className="wrap">
+   
+    return (
+      <div className="wrap">
         <h2>Create Course</h2>
+       
         <Form
           cancel={this.cancel}
           errors={errors}
@@ -81,55 +84,57 @@ export default class CreateCourse extends Component {
     );
   }
 
-    // Send the course information to the API to create a course
-    submit = () => {
-        const { context } = this.props;
-        const { authenticatedUser } = context;
-        const { title, description, estimatedTime, materialsNeeded} = this.state;
-        const userId = authenticatedUser.userId;
-        const course = {
-          title,
-          description,
-          estimatedTime,
-          materialsNeeded,
-          userId
-        };
-    
-        console.log(this.state.errors);
-        
-
-        context.data
-          .createCourse(
-            course,
-            authenticatedUser.emailAddress,
-            authenticatedUser.password
-          )
-          .then(errors => {
-            if (errors.length) {
-              this.setState({ errors });
-            } else {
-              console.log("Success! Course has been created.");
-              this.props.history.push("/");
-            }
-          })
-          .catch(errors => console.log(errors));
-    };
-
-    // Cancel course creation and return user to the class index
-    cancel = () => {
-        this.props.history.push('/');
-    }
-
-    // Update state with course attributes
-    change = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
+  change = e => {
+    const name = e.target.name;
+    const value = e.target.value;
 
     this.setState(() => {
-        return {
+      return {
         [name]: value
-        };
+      };
     });
-  }
+  };
 
+  //allow only authenticated users to create course
+  submit = () => {
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;   
+
+    const userId = authUser.id;
+    console.log(userId);
+
+    const { title, description, estimatedTime, materialsNeeded} = this.state;
+    const course = {
+      title,
+      description,
+      estimatedTime,
+      materialsNeeded,
+      userId      
+    };
+
+    console.log(this.state.errors);
+    
+    //errors and  validations
+    context.data
+      .createCourse(
+        course,
+        authUser.emailAddress,
+        authUser.password
+      )
+      .then(errors => {
+        if (errors.length) {
+          this.setState({ errors });
+        } else {
+          console.log("Success! Course has been created.");
+          this.props.history.push("/");
+        }
+      })
+      .catch(errors => console.log(errors));
+  };
+
+  cancel = () => {
+    this.props.history.push("/");
+  };
 }
+
+export default CreateCourse
