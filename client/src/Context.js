@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
-
+/**
+ * A higher-order component (HOC) that shares functionality 
+ * across the components of the app. This will let you reuse 
+ * component logic and state. Remember - "Context" is used in 
+ * React when data needs to be accessible by many components at different nesting levels.
+ */
 const Context = React.createContext(); 
 
 //Context allows changes to be made and passed through as props throughout the components
@@ -27,8 +32,9 @@ export class Provider extends Component {
         signOut: this.signOut
       },
     };
+    //value represents an object containing the context to be shared throughout the component tree.
     return (
-      <Context.Provider value={value}>
+      <Context.Provider value={value}>  
         {this.props.children}
       </Context.Provider>  
     );

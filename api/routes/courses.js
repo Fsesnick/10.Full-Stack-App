@@ -52,8 +52,8 @@ if(course) {
     let course;
     try {
       course = await Course.create(req.body);
-      res.location(`/courses/${course.id}`);
-      res.status(201).end();
+    
+      res.status(201).location(`/api/courses/${course.id}`).end();
     } catch (error) {
       if( 
       error.name === "SequelizeValidationError" ||

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+const form = (props) => {
   const {
     cancel,
     errors,
@@ -18,7 +18,7 @@ export default (props) => {
     event.preventDefault();
     cancel();
   }
-
+//validation errors
   return (
     <div>
       <ErrorsDisplay errors={errors} />
@@ -38,9 +38,9 @@ function ErrorsDisplay({ errors }) {
 
   if (errors.length) {
     errorsDisplay = (
-      <div>
-        <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
+      <div className="validation--errors">
+        <h3 className="validation--errors--label">Validation Errors</h3>
+        <div>
           <ul>
             {errors.map((error, i) => <li key={i}>{error}</li>)}
           </ul>
@@ -51,3 +51,5 @@ function ErrorsDisplay({ errors }) {
 
   return errorsDisplay;
 }
+
+export default form

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { Consumer } from './Context';
+/**
+ * If the user is authenticated, the component specified in <PrivateRoute>'s component prop gets rendered.
 
+If the user not authenticated, redirect to /signin:
+ */
 // Este componente faz rotas privadas apenas para usuários autenticados usarem para atualizar, criar e excluir curso 
 const privateRoute = ({ component: Component, ...rest }) => {
   return (

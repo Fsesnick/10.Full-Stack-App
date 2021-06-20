@@ -1,4 +1,4 @@
-//import components
+// Renders the router that wraps the components of the app.
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import CourseDetail from "./components/CourseDetail";
 //import DeleteCourse from "./components/DeleteCourse";
-//import CreateCourse from "./components/CreateCourse";
+import CreateCourse from "./components/CreateCourse";
 //import UpdateCourse from "./components/UpdateCourse";
 import './styles/global.css';
 
@@ -23,7 +23,7 @@ const HeaderWithContext = withContext(Header);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CourseDetailWithContext = withContext(CourseDetail);
 //const DeleteCourseWithContext = withContext(DeleteCourse);
-//const CreateCourseWithContext = withContext(CreateCourse);
+const CreateCourseWithContext = withContext(CreateCourse);
 //const UpdateCourseWithContext = withContext(UpdateCourse);
 
 const routes = () => (
@@ -32,6 +32,7 @@ const routes = () => (
     <HeaderWithContext />
       <Switch>
         <Route exact path="/" component={Courses} />
+        <PrivateRoute exact path="/courses/create"  component={CreateCourseWithContext} />
         <Route exact path="/courses/:id" component={CourseDetailWithContext} />
         <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
