@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: {
          notEmpty: {
-          msg: "Please enter a course description",
+          msg: "Please enter a course estimated time",
         },
       },
     },

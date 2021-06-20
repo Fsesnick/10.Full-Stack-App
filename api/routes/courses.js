@@ -52,7 +52,7 @@ if(course) {
     let course;
     try {
       course = await Course.create(req.body);
-    
+      console.log("what is this");
       res.status(201).location(`/courses/${course.id}`).end();
     } catch (error) {
       if( 

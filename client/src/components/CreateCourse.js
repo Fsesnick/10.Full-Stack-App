@@ -101,7 +101,7 @@ class CreateCourse extends Component {
     const authUser = context.authenticatedUser;   
 
     const userId = authUser.id;
-    console.log(userId);
+    console.log("user id: " + userId);
 
     const { title, description, estimatedTime, materialsNeeded} = this.state;
     const course = {

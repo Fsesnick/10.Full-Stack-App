@@ -61,6 +61,7 @@ import config from './config';
       emailAddress,
       password,
     });
+    console.log(response);
     if (response.status === 201) {
       console.log('course successfully created');
       return [];

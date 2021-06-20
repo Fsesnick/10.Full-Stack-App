@@ -11,7 +11,7 @@ const { authenticateUser } = require('../middleware/authUser');
 const router = express.Router();
 
 // Route that returns a list of users.
-router.get('/', authenticateUser, asyncHandler(async (req, res) => {
+router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
   const user = req.currentUser;
 
   res.json({
