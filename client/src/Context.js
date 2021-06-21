@@ -82,3 +82,10 @@ export default function withContext(Component) {
     );
   }
 }
+
+/**
+ * the authenticated user and the user sign in and sign out 
+ * actions (i.e. methods) are defined using a Context API <Provider>
+ * component and made available throughout 
+ * your application using Context API <Consumer> components.
+ */

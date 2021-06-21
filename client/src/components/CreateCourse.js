@@ -16,7 +16,8 @@ class CreateCourse extends Component {
   };
 
   render() {
-
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;   
     const {
       title,
       description,
@@ -47,7 +48,7 @@ class CreateCourse extends Component {
                     onChange={this.change}
                     value={title}
                   />
-
+                  <p>By {authUser.firstName} {authUser.lastName}</p>
                   <label htmlFor="description">Course Description</label>
                   <textarea
                     id="description"
@@ -100,8 +101,10 @@ class CreateCourse extends Component {
     const { context } = this.props;
     const authUser = context.authenticatedUser;   
 
-    const userId = authUser.id;
-    console.log("user id: " + userId);
+    const userId = authUser.userId;
+    console.log("user id: " + authUser.userId);
+    const { user } = this.state;
+    console.log("user : " + user.emailAddress);
 
     const { title, description, estimatedTime, materialsNeeded} = this.state;
     const course = {

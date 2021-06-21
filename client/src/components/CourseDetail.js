@@ -52,7 +52,6 @@ export default class CourseDetail extends Component {
       })
       .catch((error) => {
         console.log('Error fetching and parsing data', error);
-        // push onto error stack
         this.props.history.push('/notfound');
       });
   }

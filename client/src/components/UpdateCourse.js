@@ -18,7 +18,7 @@ export default class UpdateCourse extends Component {
         await this.getCourse(this.state.id).catch(err => {
           console.log(err);
         });
-        console.log("AAH");
+        
       }
       
       //helper function grabs course from the API
