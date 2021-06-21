@@ -18,4 +18,4 @@ and
 npm start
 ```
 
-This aplication uses [BasicAuth](https://www.npmjs.com/package/basic-auth), [Axios](https://www.npmjs.com/package/axios), [CORS](https://www.npmjs.com/package/cors),[sequelize](https://www.npmjs.com/package/sequelize), [bcrypt](https://www.npmjs.com/package/bcrypt),[express](https://expressjs.com/en/starter/generator.html)
+This aplication uses [BasicAuth](https://www.npmjs.com/package/basic-auth), [Axios](https://www.npmjs.com/package/axios), [CORS](https://www.npmjs.com/package/cors),[sequelize](https://www.npmjs.com/package/sequelize), [bcrypt](https://www.npmjs.com/package/bcrypt),[express](https://expressjs.com/en/starter/generator.html), [react-router-dom](https://reactrouter.com/web/guides/quick-start)

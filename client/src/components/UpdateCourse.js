@@ -148,7 +148,7 @@ submit = () => {
         if (this.state.errors.length) {
           this.setState({ errors });
         } else {
-          console.log("Course has been created.");
+          console.log("Course has been updated.");
           this.props.history.push("/");
         }
       })
