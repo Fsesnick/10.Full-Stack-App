@@ -111,7 +111,9 @@ export default class CourseDetail extends Component {
                 <h3 className='course--detail--title'>Estimated Time </h3>
                     <ReactMarkdown children={result.estimatedTime} />
                     <h3 className='course--detail--title'>Materials Needed  </h3>
+                    <ul className="course--detail--list">
                     <ReactMarkdown children={result.materialsNeeded} />
+                    </ul>
                  </div>
               </div>
             </form>

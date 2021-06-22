@@ -145,7 +145,7 @@ submit = () => {
         authenticatedUser.password
     )
     .then(errors => {
-        if (errors.length) {
+        if (errors) {
           this.setState({ errors });
         } else {
           console.log("Course has been updated.");
