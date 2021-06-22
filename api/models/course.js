@@ -31,7 +31,10 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-         notEmpty: {
+         notNull: {
+          msg: "Please enter a course description",
+        },
+        notEmpty: {
           msg: "Please enter a course description",
         },
       },
