@@ -42,11 +42,6 @@ module.exports = (sequelize) => {
     estimatedTime: {
       type: Sequelize.STRING,
       allowNull: false,
-      validate: {
-         notEmpty: {
-          msg: "Please enter a course estimated time",
-        },
-      },
     },
     materialsNeeded:{
       type: Sequelize.STRING,
